@@ -21,7 +21,6 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <a href="#">foo</a>
       <body>
         <Outlet />
         <ScrollRestoration />
