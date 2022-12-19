@@ -9,7 +9,8 @@
     "start": "cross-env NODE_ENV=production npm run wrangler",
     "typecheck": "tsc -b",
     "wrangler": "wrangler pages dev ./public",
-    "lint": "npx eslint --ext .tsx --ext .ts ."
+    "lint": "npx eslint --ext .tsx --ext .ts .",
+    "codegen": "graphql-codegen --config codegen.yml --require dotenv/config"
   },
   "dependencies": {
     "@remix-run/cloudflare": "^1.9.0",
@@ -21,6 +22,11 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.18.0",
+    "@graphql-codegen/cli": "2.16.1",
+    "@graphql-codegen/typed-document-node": "^2.3.10",
+    "@graphql-codegen/typescript": "^2.8.5",
+    "@graphql-codegen/typescript-operations": "^2.5.10",
+    "@graphql-typed-document-node/core": "^3.1.1",
     "@remix-run/dev": "^1.9.0",
     "@remix-run/eslint-config": "^1.9.0",
     "@types/react": "^17.0.52",
