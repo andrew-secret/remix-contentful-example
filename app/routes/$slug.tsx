@@ -13,11 +13,9 @@ type PageLoaderResponse = Promise<TypedResponse<Array<HeroTeaser | TextBlock>>>;
 
 export const loader = async ({
   params,
-  context,
+  request,
 }: LoaderArgs): PageLoaderResponse => {
-  const url = `${context.BASE_URL}/api/page?slug=${
-    params.slug ? params.slug : '/'
-  }`;
+  const url = `${request.url}api/page?slug=${params.slug ? params.slug : '/'}`;
   const res = await fetch(url, {
     method: 'GET',
   });
