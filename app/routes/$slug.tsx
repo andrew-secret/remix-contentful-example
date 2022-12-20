@@ -15,8 +15,13 @@ export const loader = async ({
   params,
   request,
 }: LoaderArgs): PageLoaderResponse => {
-  const url = `${request.url}api/page?slug=${params.slug ? params.slug : '/'}`;
-  const res = await fetch(url, {
+  const { origin } = new URL(request.url);
+
+  const pageBySlug = `${origin}/api/page?slug=${
+    params.slug ? params.slug : '/'
+  }`;
+
+  const res = await fetch(pageBySlug, {
     method: 'GET',
   });
 
