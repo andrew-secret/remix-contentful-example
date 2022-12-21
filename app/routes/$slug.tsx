@@ -15,13 +15,14 @@ export const loader = async ({
   params,
   request,
 }: LoaderArgs): PageLoaderResponse => {
-  const { origin } = new URL(request.url);
+  const { origin, searchParams } = new URL(request.url);
+  const preview = searchParams.get('preview');
 
-  const pageBySlug = `${origin}/api/page?slug=${
+  const pageBySlugEndpoint = `${origin}/api/page?slug=${
     params.slug ? params.slug : '/'
-  }`;
+  }${preview === 'true' ? '&preview=true' : ''}`;
 
-  const res = await fetch(pageBySlug, {
+  const res = await fetch(pageBySlugEndpoint, {
     method: 'GET',
   });
 

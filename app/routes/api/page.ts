@@ -8,11 +8,12 @@ import { fetchFromGraphQL } from '../../utils/fetch-graphl';
 export const loader = async ({ request, context }: LoaderArgs) => {
   const url = new URL(request.url);
   const slug = url.searchParams.get('slug');
+  const preview = url.searchParams.get('preview') === 'true';
 
   const res = await fetchFromGraphQL({
     context,
     query: getPageBySlug,
-    variables: { slug },
+    variables: { slug, preview },
   });
 
   type PageResponse = {

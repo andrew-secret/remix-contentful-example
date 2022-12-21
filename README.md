@@ -20,3 +20,13 @@ Cloudflare Pages are currently only deployable through their Git provider integr
 If you don't already have an account, then [create a Cloudflare account here](https://dash.cloudflare.com/sign-up/pages) and after verifying your email address with Cloudflare, go to your dashboard and follow the [Cloudflare Pages deployment guide](https://developers.cloudflare.com/pages/framework-guides/deploy-anything).
 
 Configure the "Build command" should be set to `npm run build`, and the "Build output directory" should be set to `public`.
+
+## Contentful
+
+Contentful is a headless content management system (CMS). You upload your content (be it text, images, or video) to Contentful, and from there can organize and edit it as you desire. What sets Contentful apart from other CMSes is that it’s not page-based. In other CMSes, you adapt your content to the software. With Contentful, it’s the other way around. This concept is called content modeling.
+
+### Contentful Preview
+
+In addition to the Content Delivery API (CDA) for published content, is the Preview API for previewing unpublished content as though it were published. It maintains the same behaviour and parameters as the CDA, but delivers the latest draft for entries and assets.
+
+**You can trigger the preview by appending `?preview=true` query paramter to your current URL.**

@@ -13,8 +13,8 @@ export const getPageBySlug = gql`
     }
   }
 
-  query getPageBySlug($slug: String) {
-    pageCollection(where: { slug: $slug }, limit: 1) {
+  query getPageBySlug($slug: String, $preview: Boolean) {
+    pageCollection(where: { slug: $slug }, limit: 1, preview: $preview) {
       items {
         contentCollection(limit: 100) {
           __typename
