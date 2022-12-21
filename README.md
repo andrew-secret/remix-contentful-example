@@ -2,6 +2,19 @@
 
 - [Remix Docs](https://remix.run/docs)
 
+## Prerequistes
+
+1. Download and install latest Version of NodeJS (>=16.13.0). If node was installed via Homebrew you just need to update it.
+
+2. Create Contentful account and generate the following API tokens:
+
+```bash
+CONTENTFUL_SPACE="YOUR_SPACE_ID"
+CONTENTFUL_ENVIRONMENT="master"
+CONTENTFUL_DELIVERY_ACCESS_TOKEN="YOUR_DELIVERY_ACCESS_TOKEN"
+CONTENTFUL_PREVIEW_ACCESS_TOKEN="YOUR_PREVIEW_ACCESS_TOKEN"
+```
+
 ## Development
 
 You will be utilizing Wrangler for local development to emulate the Cloudflare runtime. This is already wired up in your package.json as the `dev` script:
