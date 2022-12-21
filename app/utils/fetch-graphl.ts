@@ -30,13 +30,19 @@ export const fetchFromGraphQL = async ({
 
   if (variables) body.variables = variables;
 
+  const isPreview = variables?.preview;
+
+  const accessToken = isPreview
+    ? context.CONTENTFUL_PREVIEW_ACCESS_TOKEN
+    : context.CONTENTFUL_DELIVERY_ACCESS_TOKEN;
+
   return fetch(
     `https://graphql.contentful.com/content/v1/spaces/${context.CONTENTFUL_SPACE}`,
     {
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${context.CONTENTFUL_DELIVERY_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${accessToken}`,
       },
       method: 'POST',
     },
