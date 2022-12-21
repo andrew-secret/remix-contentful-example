@@ -16,11 +16,11 @@ export const loader = async ({
   request,
 }: LoaderArgs): PageLoaderResponse => {
   const { origin, searchParams } = new URL(request.url);
-  const preview = searchParams.get('preview');
+  const preview = searchParams.get('preview') === 'true';
 
   const pageBySlugEndpoint = `${origin}/api/page?slug=${
     params.slug ? params.slug : '/'
-  }${preview === 'true' ? '&preview=true' : ''}`;
+  }${preview ? '&preview=true' : ''}`;
 
   const res = await fetch(pageBySlugEndpoint, {
     method: 'GET',
