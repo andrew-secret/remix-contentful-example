@@ -20,9 +20,14 @@ export const loader = async ({ request, context }: LoaderArgs) => {
     data: GetPageBySlugQuery;
   };
 
-  // Takes the response stream  and turns it into an JavaScript object.. (more or less I guess..)
   const { data }: PageResponse = await res.json();
   const convertedData = convertPage(data);
+
+  if (!convertedData) {
+    throw new Response('Not Found', {
+      status: 404,
+    });
+  }
 
   /*
    * This is a shortcut for creating `application/json` responses.
