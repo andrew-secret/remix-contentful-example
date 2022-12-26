@@ -1,36 +1,60 @@
-import type { LoaderArgs, TypedResponse } from '@remix-run/cloudflare';
+import type {
+  LoaderArgs,
+  LoaderFunction,
+  TypedResponse,
+} from '@remix-run/cloudflare';
 import { json } from '@remix-run/cloudflare';
-import { useLoaderData } from '@remix-run/react';
+import { useCatch, useLoaderData, Link } from '@remix-run/react';
 import React from 'react';
 import type { HeroTeaser } from '~/converters/hero-teaser';
 import type { TextBlock } from '~/converters/text-block';
+import { httpMiddleware } from '~/utils/http';
 
-/**
- * @description This loader fetches from the Resource route using fetch.
- */
+type PageLoaderData = Array<HeroTeaser | TextBlock>;
+type PageLoaderResponse = Promise<TypedResponse<PageLoaderData>>;
 
-type PageLoaderResponse = Promise<TypedResponse<Array<HeroTeaser | TextBlock>>>;
-
-export const loader = async ({
+export const loader: LoaderFunction = async ({
   params,
   request,
 }: LoaderArgs): PageLoaderResponse => {
+  await httpMiddleware(request);
   const { origin, searchParams } = new URL(request.url);
   const preview = searchParams.get('preview') === 'true';
 
   const pageBySlugEndpoint = `${origin}/api/page?slug=${
-    params.slug ? params.slug : '/'
+    params['*'] ? params['*'] : '/'
   }${preview ? '&preview=true' : ''}`;
 
   const res = await fetch(pageBySlugEndpoint, {
     method: 'GET',
   });
 
+  if (res.status === 404) {
+    throw new Response('Not Found', {
+      status: 404,
+    });
+  }
+
   return json(await res.json());
 };
 
+export function CatchBoundary() {
+  const caught = useCatch();
+
+  return (
+    <div>
+      <h1>Caught</h1>
+      <p>{caught.status}</p>
+      <pre>
+        <code>{JSON.stringify(caught.data, null, 2)}</code>
+      </pre>
+      <Link to="/">Go to main page</Link>
+    </div>
+  );
+}
+
 export default function Page() {
-  const pageLoader = useLoaderData<typeof loader>();
+  const pageLoader: PageLoaderData = useLoaderData<typeof loader>();
 
   return (
     <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>

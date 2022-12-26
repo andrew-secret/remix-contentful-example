@@ -1,2 +1,2 @@
 // eslint-disable-next-line no-restricted-exports
-export { default, loader } from './$slug';
+export { default, loader } from './$';
