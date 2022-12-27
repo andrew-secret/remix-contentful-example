@@ -1,4 +1,4 @@
-import type { TextBlockFragmentFragment } from '~/generated/types';
+import type { TextBlockFragmentFragment } from '~/_generated/types';
 
 export type TextBlock = {
   type: 'TextBlock';

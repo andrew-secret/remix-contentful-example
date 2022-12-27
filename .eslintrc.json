@@ -28,5 +28,6 @@
         "tsx": "never"
       }
     ]
-  }
+  },
+  "ignorePatterns": ["app/_generated/*"]
 }
