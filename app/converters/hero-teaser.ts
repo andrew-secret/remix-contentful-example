@@ -1,4 +1,4 @@
-import type { HeroTeaserFragmentFragment } from '~/generated/types';
+import type { HeroTeaserFragmentFragment } from '~/_generated/types';
 
 export type HeroTeaser = {
   type: 'HeroTeaser';

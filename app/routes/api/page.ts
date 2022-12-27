@@ -1,7 +1,7 @@
 import type { LoaderArgs } from '@remix-run/cloudflare';
 import { json } from '@remix-run/cloudflare';
 import { getPageBySlug } from '~/graphql/page';
-import type { GetPageBySlugQuery } from '~/generated/types';
+import type { GetPageBySlugQuery } from 'types';
 import { convertPage } from '~/converters/page';
 import { fetchFromGraphQL } from '../../utils/fetch-graphl';
 

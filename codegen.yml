@@ -5,7 +5,7 @@ schema:
         Authorization: 'Bearer ${CONTENTFUL_DELIVERY_ACCESS_TOKEN}'
 documents: './app/graphql/*.ts'
 generates:
-  app/generated/types.ts:
+  app/_generated/types.ts:
     plugins:
       - typescript
       - typescript-operations

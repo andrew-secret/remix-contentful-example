@@ -1,4 +1,4 @@
-import type { GetPageBySlugQuery } from '~/generated/types';
+import type { GetPageBySlugQuery } from '~/_generated/types';
 import { convertHeroTeaserFragment } from './hero-teaser';
 import { convertTextBlockFragment } from './text-block';
 
